@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Drivers</title>
+</head>
+<body>
+    <h1>Drivers List</h1>
+    <ul>
+        {% for index, row in drivers.iterrows() %}
+            <li>
+                <a href="{{ url_for('main.drivers', driver_id=row['abbr_driver']) }}">
+                    {{ row['abbr_driver'] }}
+                </a>: {{ row['driver'] }}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

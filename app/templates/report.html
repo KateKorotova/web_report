@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Racing Report</title>
+</head>
+<body>
+    <h1>Racing Report</h1>
+    <table>
+        <tr>
+            <th>№</th>
+            <th>Driver</th>
+            <th>Team</th>
+            <th>Lap Time</th>
+        </tr>
+        {% for index, row in report.iterrows() %}
+        <tr>
+            <td>{{ row["place"] }}</td>
+            <td>{{ row["driver"] }}</td>
+            <td>{{ row["car"] }}</td>
+            <td>{{ row["lap_time_formatted"] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

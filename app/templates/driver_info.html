@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Driver Info</title>
+</head>
+<body>
+    <h1>Driver Information</h1>
+    {% if not driver.empty %}
+        <p><strong>Name:</strong> {{ driver.iloc[0]['driver'] }}</p>
+        <p><strong>Team:</strong> {{ driver.iloc[0]['car'] }}</p>
+        <p><strong>Lap Time:</strong> {{ driver.iloc[0]['lap_time_formatted'] }}</p>
+        <p><strong>Place:</strong> {{ driver.iloc[0]['place'] }}</p>
+    {% else %}
+        <p>No data available for this driver.</p>
+    {% endif %}
+    <a href="{{ url_for('main.drivers') }}">Back to Drivers List</a>
+</body>
+</html>
