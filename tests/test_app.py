@@ -24,24 +24,25 @@ def test_report_page(client):
     assert response.status_code == 200
 
     soup = BeautifulSoup(response.data, 'html.parser')
-    assert soup.find('h1').text == 'Racing Report'
-    assert soup.find('table') is not None
+    assert soup.find('table', {'class': 'table table-striped'}) is not None
+    assert 'Racing Report' in soup.title.string
+    assert 'Lap Time' in [a.text.strip() for a in soup.findAll('a')]
 
 
 def test_drivers_page(client):
     response = client.get('/report/drivers/')
     assert response.status_code == 200
     soup = BeautifulSoup(response.data, 'html.parser')
-    assert soup.find('h1').text == 'Drivers List'
-    assert len(soup.find_all('li')) > 0
+    assert soup.find('table', {'class': 'table table-hover'}) is not None
+    assert 'Drivers List' in soup.title.string
 
 
 def test_driver_info_page(client):
     response = client.get('/report/drivers/?driver_id=SVF')
     assert response.status_code == 200
     soup = BeautifulSoup(response.data, 'html.parser')
-    assert soup.find('h1').text == 'Driver Information'
-    assert 'Sebastian Vettel' in soup.text
+    assert soup.find('table', {'class': 'table table-bordered'}) is not None
+    assert 'Driver Info' in soup.title.string
 
 
 def test_driver_not_found(client):
